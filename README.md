@@ -51,7 +51,8 @@ if (rank == 0) // If the process rank is 0 it is necessary to limit the size by 
     }
 Read_matrix(loc_mat, n, loc_n, blk_col_mpi_t, rank, comm);
 Dijkstra(loc_mat, loc_dist, loc_pred, loc_n, n, comm);}
-	```
+
+```
 They are methods. The method has a description where it is located.To accumulate an output array, Gather the results from Dijkstra. 32 and 33 are used for this. 
 ```sh
 	MPI_Gather(loc_dist, loc_n, MPI_INT, distance, loc_n, MPI_INT, 0, comm);
@@ -71,7 +72,7 @@ MPI_Type_free(&blk_col_mpi_t);
 MPI_Finalize();
 getchar();
 return 0;}
-```sh
+```
 
 The explanations of the Main method are like this. the next section has a description of the methods used. The first method used is matrix_size. Here is the matrix size that we defined at the beginning of the Main method. The size of our matrix is 8x8.
 ```sh
@@ -83,7 +84,8 @@ int matrix_size( MPI_Comm comm) {
 ```
 
 MPI_BCAST is used to broadcast the problem size parameter (size) from process 0 to all number of processes. Size is included in this section. Because of this the definition is made here. Next is the Build_blk_col_type method, defined by MPI_Datatype.Purpose of this method is building an MPI_Datatype that represents a block column of a matrix. In method, n is number of rows in the matrix and the block column. Also,   loc_n = n/p is number cols in the block column.
-```
+
+```sh
 MPI_Datatype Build_blk_col_type(int n, int loc_n) {
 MPI_Aint lb, extent;
 .MPI_Datatype block_mpi_t;
@@ -168,9 +170,9 @@ Dijkstra_Init(loc_mat, loc_pred, loc_dist, loc_known, rank, loc_n);
             my_min[1] = -1;
         }  
 ```
-    MPI_Allreduce(my_min, glbl_min, 1, MPI_2INT, MPI_MINLOC, comm);// MPI_Allreduce determine the maximum of a set of localer values computed at the different processes and to distribute this maximum value to each process.  It get the minimum distance found by the processes and store that distance and the global vertex in glbl_min.
+MPI_Allreduce(my_min, glbl_min, 1, MPI_2INT, MPI_MINLOC, comm);// MPI_Allreduce determine the maximum of a set of localer values computed at the different processes and to distribute this maximum value to each process.  It get the minimum distance found by the processes and store that distance and the global vertex in glbl_min.
     
-    ```sh
+```sh
         dist_glbl_u = glbl_min[0];
         glbl_u = glbl_min[1];
         if (glbl_u == -1)// This code is to assure that loc_known is not accessed with -1. In the other section, code check if global u belongs to process, and if so  it update loc_known.
@@ -257,4 +259,4 @@ int v;
     }
     printf("\n");
 }
-```sh
+```
