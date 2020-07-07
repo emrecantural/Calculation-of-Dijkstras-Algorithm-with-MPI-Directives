@@ -78,7 +78,7 @@ void Read_matrix(int loc_mat[], int n, int loc_n,
         mat = (int*)matrix();
     }
     printf("\n");
-    printf(" This project has been prepared by Emre Can Tural (151180061):\n");
+    printf(" This project has been prepared by Emre Can Tural:\n");
     printf("\n");
     print_matrix(mat);
     MPI_Scatter(mat, 1, blk_col_mpi_t, loc_mat, n * loc_n, MPI_INT, 0, comm);
