@@ -1,3 +1,8 @@
+
+Required Downloads: http://www.mathcs.emory.edu/~cheung/Courses/355/Syllabus/92-MPI/intro.html
+
+
+
 ### Description of the Codes
 The program started with the addition of libraries as follows. Besides the standard libraries, the required "mpi.h" library for MPI has been added. 1000000 value has been determined for infinity. If there is no edge between any two vertices the weight is the constant
 
